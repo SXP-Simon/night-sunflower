@@ -14,12 +14,12 @@
   }
   .carousel-container {
     display: flex;
-    width: calc(100% * 3); /* 3 images */
+    width: calc(100% * 4); /* 4 images for seamless loop */
     position: relative;
     transition: transform 0.5s ease-in-out;
   }
   .carousel img {
-    width: calc(100% / 3); /* 3 images */
+    width: calc(100% / 4); /* 4 images */
     height: 100%;
     flex-shrink: 0;
   }
@@ -32,12 +32,16 @@
     padding: 10px;
     cursor: pointer;
     border: none;
+    outline: none;
   }
   #prevBtn {
     left: 10px;
   }
   #nextBtn {
     right: 10px;
+  }
+  #prevBtn:hover, #nextBtn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
   }
 </style>
 </head>
@@ -57,13 +61,14 @@
 <script>
   let currentSlide = 0;
   const slides = document.querySelectorAll('.carousel img');
-  const totalSlides = slides.length - 1; // Exclude the duplicate image
+  const totalSlides = slides.length; // Include the duplicate image for seamless loop
   const carouselContainer = document.querySelector('.carousel-container');
 
   function showSlide(index) {
     if (index >= totalSlides) {
-      // Reset to the first slide
-      index = 0;
+      index = 0; // Reset to the first slide
+    } else if (index < 0) {
+      index = totalSlides - 1; // Go to the last slide
     }
     carouselContainer.style.transform = `translateX(-${index * 100 / totalSlides}%)`;
     currentSlide = index;
