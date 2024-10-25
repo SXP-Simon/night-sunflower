@@ -8,13 +8,13 @@
 
 .carousel-container {
   display: flex;
-  width: calc(100% * 4); /* 4 images for seamless loop */
+  width: 400%; /* Width for 4 images */
   position: relative;
   transition: transform 0.5s ease-in-out;
 }
 
 .carousel img {
-  width: calc(100% / 4); /* 4 images */
+  width: 25%; /* Width for each image */
   height: 100%;
   flex-shrink: 0;
 }
